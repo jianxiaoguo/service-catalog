@@ -23,7 +23,7 @@ import (
 	"github.com/kubernetes-sigs/service-catalog/pkg/webhook/servicecatalog/servicebroker/validation"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
-	admissionv1beta1 "k8s.io/api/admission/v1beta1"
+	admissionv1 "k8s.io/api/admission/v1"
 	"k8s.io/api/authorization/v1"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	"k8s.io/apimachinery/pkg/runtime"
@@ -65,7 +65,7 @@ func TestSpecValidationHandlerAccessToBrokerAllowed(t *testing.T) {
 	require.NoError(t, err)
 
 	request := admission.Request{
-		AdmissionRequest: admissionv1beta1.AdmissionRequest{
+		AdmissionRequest: admissionv1.AdmissionRequest{
 			UID:       "5555-eeee",
 			Name:      "test-broker",
 			Namespace: "test-handler",
@@ -82,11 +82,11 @@ func TestSpecValidationHandlerAccessToBrokerAllowed(t *testing.T) {
 	require.NoError(t, err)
 
 	tests := map[string]struct {
-		operation admissionv1beta1.Operation
+		operation admissionv1.Operation
 		object    []byte
 	}{
 		"Request for Create ServiceBroker without AuthInfo should be allowed": {
-			admissionv1beta1.Create,
+			admissionv1.Create,
 			[]byte(`{
   				"apiVersion": "servicecatalog.k8s.io/v1beta1",
   				"kind": "ServiceBroker",
@@ -101,7 +101,7 @@ func TestSpecValidationHandlerAccessToBrokerAllowed(t *testing.T) {
 			}`),
 		},
 		"Request for Update ServiceBroker without AuthInfo should be allowed": {
-			admissionv1beta1.Update,
+			admissionv1.Update,
 			[]byte(`{
   				"apiVersion": "servicecatalog.k8s.io/v1beta1",
   				"kind": "ServiceBroker",
@@ -116,7 +116,7 @@ func TestSpecValidationHandlerAccessToBrokerAllowed(t *testing.T) {
 			}`),
 		},
 		"Request for Create ServiceBroker with AuthInfo should be allowed": {
-			admissionv1beta1.Create,
+			admissionv1.Create,
 			[]byte(`{
   				"apiVersion": "servicecatalog.k8s.io/v1beta1",
   				"kind": "ServiceBroker",
@@ -139,7 +139,7 @@ func TestSpecValidationHandlerAccessToBrokerAllowed(t *testing.T) {
 			}`),
 		},
 		"Request for Update ServiceBroker with AuthInfo should be allowed": {
-			admissionv1beta1.Update,
+			admissionv1.Update,
 			[]byte(`{
   				"apiVersion": "servicecatalog.k8s.io/v1beta1",
   				"kind": "ServiceBroker",
@@ -193,7 +193,7 @@ func TestSpecValidationHandlerAccessToBrokerDenied(t *testing.T) {
 	require.NoError(t, err)
 
 	request := admission.Request{
-		AdmissionRequest: admissionv1beta1.AdmissionRequest{
+		AdmissionRequest: admissionv1.AdmissionRequest{
 			UID:       "6666-ffff",
 			Name:      "test-broker",
 			Namespace: "test-handler",
@@ -212,11 +212,11 @@ func TestSpecValidationHandlerAccessToBrokerDenied(t *testing.T) {
 	require.NoError(t, err)
 
 	tests := map[string]struct {
-		operation admissionv1beta1.Operation
+		operation admissionv1.Operation
 		object    []byte
 	}{
 		"Request for Create ServiceBroker should be denied": {
-			admissionv1beta1.Create,
+			admissionv1.Create,
 			[]byte(`{
   				"apiVersion": "servicecatalog.k8s.io/v1beta1",
   				"kind": "ServiceBroker",
@@ -239,7 +239,7 @@ func TestSpecValidationHandlerAccessToBrokerDenied(t *testing.T) {
 			}`),
 		},
 		"Request for Update ServiceBroker should be denied": {
-			admissionv1beta1.Update,
+			admissionv1.Update,
 			[]byte(`{
   				"apiVersion": "servicecatalog.k8s.io/v1beta1",
   				"kind": "ServiceBroker",

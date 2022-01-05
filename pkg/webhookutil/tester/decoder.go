@@ -28,7 +28,7 @@ import (
 	sc "github.com/kubernetes-sigs/service-catalog/pkg/apis/servicecatalog/v1beta1"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
-	admissionv1beta1 "k8s.io/api/admission/v1beta1"
+	admissionv1 "k8s.io/api/admission/v1"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	"k8s.io/apimachinery/pkg/runtime"
 	"k8s.io/client-go/kubernetes/scheme"
@@ -49,8 +49,8 @@ func AssertHandlerReturnErrorIfReqObjIsMalformed(t *testing.T, handler TestDecod
 	require.NoError(t, err)
 
 	fixReq := admission.Request{
-		AdmissionRequest: admissionv1beta1.AdmissionRequest{
-			Operation: admissionv1beta1.Create,
+		AdmissionRequest: admissionv1.AdmissionRequest{
+			Operation: admissionv1.Create,
 			Name:      "test-name",
 			Namespace: "system",
 			Kind: metav1.GroupVersionKind{
@@ -85,8 +85,8 @@ func AssertHandlerReturnErrorIfGVKMismatch(t *testing.T, handler TestDecoderHand
 	require.NoError(t, err)
 
 	fixReq := admission.Request{
-		AdmissionRequest: admissionv1beta1.AdmissionRequest{
-			Operation: admissionv1beta1.Create,
+		AdmissionRequest: admissionv1.AdmissionRequest{
+			Operation: admissionv1.Create,
 			Name:      "test-name",
 			Namespace: "system",
 			Kind: metav1.GroupVersionKind{

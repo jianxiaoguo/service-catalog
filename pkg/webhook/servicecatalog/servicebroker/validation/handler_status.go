@@ -20,7 +20,7 @@ import (
 	sc "github.com/kubernetes-sigs/service-catalog/pkg/apis/servicecatalog/v1beta1"
 	scv "github.com/kubernetes-sigs/service-catalog/pkg/apis/servicecatalog/validation"
 	"github.com/kubernetes-sigs/service-catalog/pkg/webhookutil"
-	admissionTypes "k8s.io/api/admission/v1beta1"
+	admissionTypes "k8s.io/api/admission/v1"
 
 	"context"
 	"net/http"
