@@ -21,7 +21,7 @@ import (
 	"reflect"
 	"sync"
 
-	osb "github.com/kubernetes-sigs/go-open-service-broker-client/v2"
+	osb "sigs.k8s.io/go-open-service-broker-client/v2"
 	"k8s.io/klog"
 )
 

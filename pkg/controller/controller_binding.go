@@ -27,7 +27,7 @@ import (
 	scfeatures "github.com/kubernetes-sigs/service-catalog/pkg/features"
 	"github.com/kubernetes-sigs/service-catalog/pkg/pretty"
 
-	osb "github.com/kubernetes-sigs/go-open-service-broker-client/v2"
+	osb "sigs.k8s.io/go-open-service-broker-client/v2"
 	corev1 "k8s.io/api/core/v1"
 	apierrors "k8s.io/apimachinery/pkg/api/errors"
 	"k8s.io/apimachinery/pkg/api/meta"

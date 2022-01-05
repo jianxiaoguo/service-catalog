@@ -22,8 +22,8 @@ import (
 	"net/http"
 	"testing"
 
-	osb "github.com/kubernetes-sigs/go-open-service-broker-client/v2"
-	fakeosb "github.com/kubernetes-sigs/go-open-service-broker-client/v2/fake"
+	osb "sigs.k8s.io/go-open-service-broker-client/v2"
+	fakeosb "sigs.k8s.io/go-open-service-broker-client/v2/fake"
 	"github.com/kubernetes-sigs/service-catalog/pkg/apis/servicecatalog/v1beta1"
 	v1beta1informers "github.com/kubernetes-sigs/service-catalog/pkg/client/informers_generated/externalversions/servicecatalog/v1beta1"
 	scfeatures "github.com/kubernetes-sigs/service-catalog/pkg/features"
