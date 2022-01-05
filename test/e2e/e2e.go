@@ -27,7 +27,7 @@ import (
 	"github.com/onsi/ginkgo"
 	"github.com/onsi/ginkgo/config"
 	"github.com/onsi/gomega"
-	"k8s.io/klog"
+	"k8s.io/klog/v2"
 )
 
 // RunE2ETests checks configuration parameters (specified through flags) and then runs

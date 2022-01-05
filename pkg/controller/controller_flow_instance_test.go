@@ -24,7 +24,7 @@ import (
 	"net/url"
 	"testing"
 
-	"github.com/kubernetes-sigs/go-open-service-broker-client/v2"
+	"sigs.k8s.io/go-open-service-broker-client/v2"
 	"github.com/kubernetes-sigs/service-catalog/pkg/apis/servicecatalog/v1beta1"
 	"github.com/kubernetes-sigs/service-catalog/pkg/features"
 	"github.com/stretchr/testify/assert"

@@ -26,8 +26,8 @@ import (
 	"testing"
 	"time"
 
-	osb "github.com/kubernetes-sigs/go-open-service-broker-client/v2"
-	fakeosb "github.com/kubernetes-sigs/go-open-service-broker-client/v2/fake"
+	osb "sigs.k8s.io/go-open-service-broker-client/v2"
+	fakeosb "sigs.k8s.io/go-open-service-broker-client/v2/fake"
 	scmeta "github.com/kubernetes-sigs/service-catalog/pkg/api/meta"
 	"github.com/kubernetes-sigs/service-catalog/pkg/apis/servicecatalog/v1beta1"
 	v1beta1informers "github.com/kubernetes-sigs/service-catalog/pkg/client/informers_generated/externalversions/servicecatalog/v1beta1"
