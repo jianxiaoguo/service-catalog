@@ -17,6 +17,7 @@ limitations under the License.
 package server
 
 import (
+	"context"
 	"fmt"
 	"net/http"
 
@@ -49,6 +50,7 @@ import (
 	"sigs.k8s.io/controller-runtime/pkg/manager"
 	"sigs.k8s.io/controller-runtime/pkg/webhook"
 	"sigs.k8s.io/controller-runtime/pkg/webhook/admission"
+	"sigs.k8s.io/controller-runtime/pkg/manager/signals"
 )
 
 // RunServer runs the webhook server with configuration according to opts
@@ -130,7 +132,7 @@ func run(opts *WebhookServerOptions, stopCh <-chan struct{}) error {
 	}
 
 	// setup healthz server
-	healthzSvr := manager.RunnableFunc(func(stopCh <-chan struct{}) error {
+	healthzSvr := manager.RunnableFunc(func(ctx context.Context) error {
 		mux := http.NewServeMux()
 
 		// readiness registered at /healthz/ready indicates if traffic should be routed to this container
@@ -157,7 +159,7 @@ func run(opts *WebhookServerOptions, stopCh <-chan struct{}) error {
 	}
 
 	// starts the server blocks until the Stop channel is closed
-	if err := mgr.Start(stopCh); err != nil {
+	if err := mgr.Start(signals.SetupSignalHandler()); err != nil {
 		return errors.Wrap(err, "while running the webhook manager")
 
 	}
