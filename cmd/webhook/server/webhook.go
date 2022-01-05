@@ -20,6 +20,7 @@ import (
 	"context"
 	"fmt"
 	"net/http"
+	"sigs.k8s.io/controller-runtime/pkg/manager/signals"
 
 	scTypes "github.com/kubernetes-sigs/service-catalog/pkg/apis/servicecatalog/v1beta1"
 	"github.com/kubernetes-sigs/service-catalog/pkg/util"
@@ -50,7 +51,7 @@ import (
 	"sigs.k8s.io/controller-runtime/pkg/manager"
 	"sigs.k8s.io/controller-runtime/pkg/webhook"
 	"sigs.k8s.io/controller-runtime/pkg/webhook/admission"
-	"sigs.k8s.io/controller-runtime/pkg/manager/signals"
+	_ "sigs.k8s.io/controller-runtime/pkg/manager/signals"
 )
 
 // RunServer runs the webhook server with configuration according to opts
