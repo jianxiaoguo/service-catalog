@@ -30,4 +30,3 @@ controller.test*
 debug.test*
 .cache
 /api_violations.txt
-vendor/*
